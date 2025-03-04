@@ -1,6 +1,9 @@
+import 'package:bloc_expenses_tracker/screens/home/get_expenses_blocs/bloc/get_expenses_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/home/views/home_screen.dart';
+import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Import thêm để dùng SystemChrome
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; // Import thêm để dùng SystemChrome
 
 class MyAppView extends StatelessWidget {
   const MyAppView({super.key});
@@ -26,7 +29,11 @@ class MyAppView extends StatelessWidget {
           tertiary: const Color(0xFFFF8D6C),
           outline: Colors.grey,
         )),
-        home: const HomeScreen(),
+        home: BlocProvider(
+          create: (context) =>
+              GetExpensesBloc(FirebaseExpenseRepo())..add(GetExpenses()),
+          child: const HomeScreen(),
+        ),
       ),
     );
   }
