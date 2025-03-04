@@ -1,5 +1,5 @@
-import 'package:bloc_expenses_tracker/screens/home/get_expenses_blocs/bloc/get_expenses_bloc.dart';
-import 'package:bloc_expenses_tracker/screens/home/views/home_screen.dart';
+import 'package:bloc_expenses_tracker/screens/expense_app/home_expense/get_expenses_blocs/bloc/get_expenses_bloc.dart';
+import 'package:bloc_expenses_tracker/screens/expense_app/home_expense/views/home_screen.dart';
 import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
