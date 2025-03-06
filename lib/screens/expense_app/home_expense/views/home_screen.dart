@@ -12,14 +12,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreenExpense extends StatefulWidget {
+  const HomeScreenExpense({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreenExpense> createState() => _HomeScreenExpenseState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenExpenseState extends State<HomeScreenExpense> {
   int index = 0;
   Color selectedItem = Colors.blue;
   Color unselectedItem = Colors.grey;
