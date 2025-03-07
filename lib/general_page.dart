@@ -28,51 +28,51 @@ class GeneralPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => const HomeScreenRecordNote(),
-            //       ),
-            //     );
-            //   },
-            //   child: const GradientCard(
-            //     imagePath: 'assets/voice-recorder.svg',
-            //     subtitle:
-            //         'Take notes conviniently with your voice - with auto transcript powered by OpenAI',
-            //     title: 'Record note',
-            //     colors: [
-            //       Color(0xFF9C27B0), // Màu tím hồng
-            //       Color(0xFF2196F3), // Màu xanh dương
-            //     ],
-            //   ),
-            // ),
-            // const SizedBox(height: 10),
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => BlocProvider(
-            //           create: (context) =>
-            //               GetExpensesBloc(FirebaseExpenseRepo())
-            //                 ..add(GetExpenses()),
-            //           child: const HomeScreenExpense(),
-            //         ),
-            //       ),
-            //     );
-            //   },
-            //   child: const GradientCard(
-            //     colors: [
-            //       Color(0xFFFFA726),
-            //       Color(0xFFFFD54F),
-            //     ],
-            //     imagePath: 'assets/voice-recorder.svg',
-            //     subtitle: 'Record your daily expense with easy tracker',
-            //     title: 'Expense tracker',
-            //   ),
-            // )
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomeScreenRecordNote(),
+                  ),
+                );
+              },
+              child: const GradientCard(
+                imagePath: 'assets/voice-recorder.svg',
+                subtitle:
+                    'Take notes conviniently with your voice - with auto transcript powered by OpenAI',
+                title: 'Record note',
+                colors: [
+                  Color(0xFF9C27B0), // Màu tím hồng
+                  Color(0xFF2196F3), // Màu xanh dương
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                      create: (context) =>
+                          GetExpensesBloc(FirebaseExpenseRepo())
+                            ..add(GetExpenses()),
+                      child: const HomeScreenExpense(),
+                    ),
+                  ),
+                );
+              },
+              child: const GradientCard(
+                colors: [
+                  Color(0xFFFFA726),
+                  Color(0xFFFFD54F),
+                ],
+                imagePath: 'assets/voice-recorder.svg',
+                subtitle: 'Record your daily expense with easy tracker',
+                title: 'Expense tracker',
+              ),
+            )
           ],
         ),
       ),
