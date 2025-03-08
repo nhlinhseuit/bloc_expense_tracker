@@ -68,11 +68,22 @@ class MainScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(CupertinoIcons.settings),
-                  color: Theme.of(context).colorScheme.onSurface,
-                )
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(CupertinoIcons.settings),
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(CupertinoIcons.home),
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ],
+                ),
               ],
             ),
             const SizedBox(

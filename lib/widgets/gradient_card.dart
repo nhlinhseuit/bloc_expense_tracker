@@ -1,150 +1,81 @@
-import 'dart:math';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_svg/svg.dart';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+// class GradientCard extends StatelessWidget {
+//   final String title;
+//   final String subtitle;
+//   final String imagePath;
+//   final List<Color> colors;
 
-class GradientCard extends StatelessWidget {
-  const GradientCard({super.key});
+//   const GradientCard({
+//     super.key,
+//     required this.title,
+//     required this.subtitle,
+//     required this.imagePath,
+//     required this.colors,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Theme.of(context).colorScheme.primary,
-              Theme.of(context).colorScheme.secondary,
-              Theme.of(context).colorScheme.tertiary,
-            ],
-            transform: const GradientRotation(pi / 4),
-          ),
-          borderRadius: BorderRadius.circular(25),
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 4,
-              color: Colors.grey.shade300,
-              offset: const Offset(5, 5),
-            )
-          ]),
-      width: double.infinity,
-      height: MediaQuery.of(context).size.width / 2,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            'Total Balance',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          const Text(
-            '\$ 4800',
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 12.0,
-              horizontal: 20,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 25,
-                      height: 25,
-                      decoration: const BoxDecoration(
-                          color: Colors.white30, shape: BoxShape.circle),
-                      child: const Center(
-                        child: Icon(
-                          CupertinoIcons.arrow_down,
-                          color: Colors.green,
-                          size: 12,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Income',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '\$ 2500',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(
-                      width: 25,
-                      height: 25,
-                      decoration: const BoxDecoration(
-                          color: Colors.white30, shape: BoxShape.circle),
-                      child: const Center(
-                        child: Icon(
-                          color: Colors.red,
-                          CupertinoIcons.arrow_down,
-                          size: 12,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Outcome',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '\$ 2500',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return ConstrainedBox(
+//       constraints: const BoxConstraints(maxHeight: 120),
+//       child: Container(
+//         decoration: BoxDecoration(
+//           gradient: LinearGradient(
+//             colors: colors,
+//             begin: Alignment.topLeft,
+//             end: Alignment.bottomRight,
+//           ),
+//           borderRadius: BorderRadius.circular(20),
+//           boxShadow: [
+//             BoxShadow(
+//               blurRadius: 4,
+//               color: Colors.grey.shade300,
+//               offset: const Offset(3, 3),
+//             ),
+//           ],
+//         ),
+//         padding: const EdgeInsets.all(16),
+//         width: double.infinity,
+//         child: Row(
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             Expanded(
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   Text(
+//                     title,
+//                     style: const TextStyle(
+//                       fontSize: 16,
+//                       fontWeight: FontWeight.bold,
+//                       color: Colors.white,
+//                     ),
+//                   ),
+//                   const SizedBox(height: 5),
+//                   Text(
+//                     subtitle,
+//                     style: const TextStyle(
+//                       fontSize: 12,
+//                       fontWeight: FontWeight.w600,
+//                       color: Colors.white70,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+
+//             // Image section
+//             SvgPicture.asset(
+//               imagePath,
+//               width: 80,
+//               height: 80,
+//               fit: BoxFit.contain,
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
