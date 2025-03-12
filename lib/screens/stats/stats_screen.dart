@@ -1,4 +1,4 @@
-import 'package:bloc_expenses_tracker/screens/expense_app/stats/chart.dart';
+import 'package:bloc_expenses_tracker/screens/stats/chart.dart';
 import 'package:flutter/material.dart';
 
 class StatsScreen extends StatelessWidget {
