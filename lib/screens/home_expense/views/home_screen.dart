@@ -1,6 +1,6 @@
 import 'dart:math';
 
-
+import 'package:bloc_expenses_tracker/providers/theme_provider.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/create_category_bloc/create_category_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/create_expense_bloc/create_expense_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/get_categories_bloc/get_categories_bloc.dart';
@@ -12,6 +12,7 @@ import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreenExpense extends StatefulWidget {
   const HomeScreenExpense({super.key});
@@ -22,11 +23,25 @@ class HomeScreenExpense extends StatefulWidget {
 
 class _HomeScreenExpenseState extends State<HomeScreenExpense> {
   int index = 0;
-  Color selectedItem = Colors.blue;
-  Color unselectedItem = Colors.grey;
+  // Color selectedItem =  Colors.blue;
+  // Color unselectedItem = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    Color getSelectedItem() {
+      return themeProvider.themeMode == ThemeMode.light
+          ? Colors.blue
+          : Colors.blueAccent;
+    }
+
+    Color getUnSelectedItem() {
+      return themeProvider.themeMode == ThemeMode.light
+          ? Colors.grey
+          : Colors.black54;
+    }
+
     return BlocBuilder<GetExpensesBloc, GetExpensesState>(
       builder: (context, state) {
         if (state is GetExpensesSuccess) {
@@ -55,7 +70,8 @@ class _HomeScreenExpenseState extends State<HomeScreenExpense> {
                     top: Radius.circular(30),
                   ),
                   child: BottomNavigationBar(
-                    backgroundColor: Colors.white,
+                    backgroundColor:
+                        Theme.of(context).colorScheme.primaryContainer,
                     showSelectedLabels: false,
                     showUnselectedLabels: false,
                     elevation: 0, // Xóa bóng mặc định để tránh xung đột
@@ -68,14 +84,18 @@ class _HomeScreenExpenseState extends State<HomeScreenExpense> {
                       BottomNavigationBarItem(
                         icon: Icon(
                           CupertinoIcons.home,
-                          color: index == 0 ? selectedItem : unselectedItem,
+                          color: index == 0
+                              ? getSelectedItem()
+                              : getUnSelectedItem(),
                         ),
                         label: 'Home',
                       ),
                       BottomNavigationBarItem(
                         icon: Icon(
                           CupertinoIcons.graph_square,
-                          color: index == 1 ? selectedItem : unselectedItem,
+                          color: index == 1
+                              ? getSelectedItem()
+                              : getUnSelectedItem(),
                         ),
                         label: 'Stats',
                       ),

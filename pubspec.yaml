@@ -24,6 +24,8 @@ dependencies:
   flutter_bloc: ^9.1.0
   equatable: ^2.0.7
   uuid: ^4.5.1
+  provider: ^6.1.2
+  shared_preferences: ^2.5.2 # đang lỗi th này
 
 dev_dependencies:
   flutter_test:

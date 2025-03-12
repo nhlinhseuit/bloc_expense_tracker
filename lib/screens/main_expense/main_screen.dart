@@ -1,9 +1,11 @@
 import 'dart:math';
 
+import 'package:bloc_expenses_tracker/providers/theme_provider.dart';
 import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
   final List<Expense> expenses;
@@ -11,6 +13,8 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return SafeArea(
       child: Container(
         color: Theme.of(context).colorScheme.surface,
@@ -68,10 +72,21 @@ class MainScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(CupertinoIcons.settings),
-                  color: Theme.of(context).colorScheme.onSurface,
+                Row(
+                  children: [
+                    Switch.adaptive(
+                      value: themeProvider.themeMode == ThemeMode.dark,
+                      activeColor: Colors.greenAccent,
+                      onChanged: (value) {
+                        themeProvider.toggleTheme();
+                      },
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(CupertinoIcons.settings),
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -233,9 +248,7 @@ class MainScreen extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    // Xử lý sự kiện khi nhấn vào "View All"
-                  },
+                  onTap: () {},
                   child: Text(
                     'View All',
                     style: TextStyle(
@@ -261,7 +274,7 @@ class MainScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primaryContainer,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Padding(
@@ -283,15 +296,11 @@ class MainScreen extends StatelessWidget {
                                         shape: BoxShape.circle,
                                       ),
                                     ),
-                                    // const Icon(
-                                    //   Icons.food_bank,
-                                    //   color: Colors.white,
-                                    // ),
-
                                     Image.asset(
                                       'assets/${expenses[i].category.icon}.png',
                                       scale: 2,
-                                      color: Colors.white,
+                                      color:
+                                          Theme.of(context).colorScheme.surface,
                                     ),
                                   ],
                                 ),

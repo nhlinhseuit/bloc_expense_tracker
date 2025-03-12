@@ -75,7 +75,8 @@ class _AddExpenseState extends State<AddExpense> {
                           textAlignVertical: TextAlignVertical.center,
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor:
+                                Theme.of(context).colorScheme.primaryContainer,
                             prefixIcon: const Icon(
                               FontAwesomeIcons.dollarSign,
                               size: 16,
@@ -98,7 +99,7 @@ class _AddExpenseState extends State<AddExpense> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: expense.category == Category.empty
-                              ? Colors.white
+                              ? Theme.of(context).colorScheme.primaryContainer
                               : Color(expense.category.color),
                           prefixIcon: expense.category == Category.empty
                               ? const Icon(
@@ -135,9 +136,9 @@ class _AddExpenseState extends State<AddExpense> {
                       Container(
                         height: 200,
                         width: MediaQuery.of(context).size.width,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.vertical(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primaryContainer,
+                          borderRadius: const BorderRadius.vertical(
                               bottom: Radius.circular(12)),
                         ),
                         child: Padding(
@@ -158,7 +159,13 @@ class _AddExpenseState extends State<AddExpense> {
                                   'assets/${state.categories[i].icon}.png',
                                   scale: 2,
                                 ),
-                                title: Text(state.categories[i].name),
+                                title: Text(
+                                  state.categories[i].name,
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.onSurface,
+                                  ),
+                                ),
                                 tileColor: Color(state.categories[i].color),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8)),
@@ -193,7 +200,8 @@ class _AddExpenseState extends State<AddExpense> {
                         },
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor:
+                              Theme.of(context).colorScheme.primaryContainer,
                           prefixIcon: const Icon(
                             FontAwesomeIcons.clock,
                             size: 16,

@@ -22,7 +22,7 @@ Future getCategoryCreation(BuildContext context) {
       builder: (ctx) {
         bool isExpended = false;
         String iconSelected = '';
-        Color categoryColor = Colors.white;
+        Color categoryColor = Theme.of(context).colorScheme.primaryContainer;
         TextEditingController categoryNameController = TextEditingController();
         TextEditingController categoryIconController = TextEditingController();
         TextEditingController categoryColorController = TextEditingController();
@@ -44,7 +44,12 @@ Future getCategoryCreation(BuildContext context) {
               },
               child: AlertDialog(
                 backgroundColor: const Color(0xffd5ebf1),
-                title: const Text('Create a Category'),
+                title: Text(
+                  'Create a Category',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
+                ),
                 content: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Column(
@@ -56,7 +61,8 @@ Future getCategoryCreation(BuildContext context) {
                         decoration: InputDecoration(
                           isDense: true,
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor:
+                              Theme.of(context).colorScheme.primaryContainer,
                           hintText: 'Name',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -82,7 +88,8 @@ Future getCategoryCreation(BuildContext context) {
                             CupertinoIcons.chevron_down,
                             size: 12,
                           ),
-                          fillColor: Colors.white,
+                          fillColor:
+                              Theme.of(context).colorScheme.primaryContainer,
                           hintText: 'Icon',
                           border: OutlineInputBorder(
                               borderRadius: isExpended
@@ -96,9 +103,11 @@ Future getCategoryCreation(BuildContext context) {
                           ? Container(
                               width: MediaQuery.of(context).size.width,
                               height: 200,
-                              decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.vertical(
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .primaryContainer,
+                                  borderRadius: const BorderRadius.vertical(
                                       bottom: Radius.circular(12))),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
