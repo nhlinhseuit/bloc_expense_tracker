@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:bloc_expenses_tracker/providers/theme_provider.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/create_category_bloc/create_category_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/create_expense_bloc/create_expense_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/get_categories_bloc/get_categories_bloc.dart';
+import 'package:bloc_expenses_tracker/screens/add_expense/blocs/theme_bloc/theme_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/views/add_expense.dart';
 import 'package:bloc_expenses_tracker/screens/home_expense/get_expenses_blocs/bloc/get_expenses_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/main_expense/main_screen.dart';
@@ -12,7 +12,6 @@ import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreenExpense extends StatefulWidget {
   const HomeScreenExpense({super.key});
@@ -23,21 +22,17 @@ class HomeScreenExpense extends StatefulWidget {
 
 class _HomeScreenExpenseState extends State<HomeScreenExpense> {
   int index = 0;
-  // Color selectedItem =  Colors.blue;
-  // Color unselectedItem = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-
     Color getSelectedItem() {
-      return themeProvider.themeMode == ThemeMode.light
+      return context.read<ThemeBloc>().state.themeMode == ThemeMode.light
           ? Colors.blue
           : Colors.blueAccent;
     }
 
     Color getUnSelectedItem() {
-      return themeProvider.themeMode == ThemeMode.light
+      return context.read<ThemeBloc>().state.themeMode == ThemeMode.light
           ? Colors.grey
           : Colors.black54;
     }

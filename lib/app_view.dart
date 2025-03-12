@@ -1,46 +1,40 @@
-import 'package:bloc_expenses_tracker/providers/theme_provider.dart';
-import 'package:bloc_expenses_tracker/screens/home_expense/get_expenses_blocs/bloc/get_expenses_bloc.dart';
+import 'package:bloc_expenses_tracker/screens/add_expense/blocs/theme_bloc/theme_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/home_expense/views/home_screen.dart';
-import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class MyAppView extends StatelessWidget {
   const MyAppView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
-      return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: themeProvider.themeMode == ThemeMode.dark
-            ? SystemUiOverlayStyle.light.copyWith(
-                statusBarColor: Colors.grey.shade900,
-                statusBarIconBrightness: Brightness.light,
-                systemNavigationBarColor: Colors.black,
-                systemNavigationBarIconBrightness: Brightness.light,
-              )
-            : SystemUiOverlayStyle.dark.copyWith(
-                statusBarColor: Colors.grey.shade100,
-                statusBarIconBrightness: Brightness.dark,
-                systemNavigationBarColor: Colors.white,
-                systemNavigationBarIconBrightness: Brightness.dark,
-              ),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: "My Application",
-          themeMode: themeProvider.themeMode, // Chế độ tự động theo hệ thống
-          theme: _lightTheme(),
-          darkTheme: _darkTheme(),
-          home: BlocProvider(
-            create: (context) =>
-                GetExpensesBloc(FirebaseExpenseRepo())..add(GetExpenses()),
-            child: const HomeScreenExpense(),
-          ),
-        ),
-      );
-    });
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: context.read<ThemeBloc>().state.themeMode == ThemeMode.dark
+          ? SystemUiOverlayStyle.light.copyWith(
+              statusBarColor: Colors.grey.shade900,
+              statusBarIconBrightness: Brightness.light,
+              systemNavigationBarColor: Colors.black,
+              systemNavigationBarIconBrightness: Brightness.light,
+            )
+          : SystemUiOverlayStyle.dark.copyWith(
+              statusBarColor: Colors.grey.shade100,
+              statusBarIconBrightness: Brightness.dark,
+              systemNavigationBarColor: Colors.white,
+              systemNavigationBarIconBrightness: Brightness.dark,
+            ),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "My Application",
+        themeMode: context
+            .watch<ThemeBloc>()
+            .state
+            .themeMode, // Chế độ tự động theo hệ thống
+        theme: _lightTheme(),
+        darkTheme: _darkTheme(),
+        home: const HomeScreenExpense(),
+      ),
+    );
   }
 
   /// Theme cho Light Mode

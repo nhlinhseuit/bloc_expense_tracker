@@ -1,11 +1,12 @@
 import 'dart:math';
 
-import 'package:bloc_expenses_tracker/providers/theme_provider.dart';
+import 'package:bloc_expenses_tracker/screens/add_expense/blocs/theme_bloc/theme_bloc.dart';
+import 'package:bloc_expenses_tracker/utils/utils.dart';
 import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
   final List<Expense> expenses;
@@ -13,8 +14,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-
     return SafeArea(
       child: Container(
         color: Theme.of(context).colorScheme.surface,
@@ -75,10 +74,17 @@ class MainScreen extends StatelessWidget {
                 Row(
                   children: [
                     Switch.adaptive(
-                      value: themeProvider.themeMode == ThemeMode.dark,
+                      value: context.read<ThemeBloc>().state.themeMode ==
+                          ThemeMode.dark,
                       activeColor: Colors.greenAccent,
-                      onChanged: (value) {
-                        themeProvider.toggleTheme();
+                      onChanged: (value) async {
+                        final themeBloc = context.read<ThemeBloc>();
+
+                        bool isToggleDark = !(await Utils().getDarkMode());
+                        final ThemeMode themeMode =
+                            isToggleDark ? ThemeMode.dark : ThemeMode.light;
+
+                        themeBloc.add(ChangeTheme(themeMode: themeMode));
                       },
                     ),
                     IconButton(
