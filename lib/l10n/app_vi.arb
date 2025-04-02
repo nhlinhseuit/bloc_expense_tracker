@@ -1,0 +1,9 @@
+{
+  "@@locale": "vi",
+  "welcome": "Xin chào!",
+  "totalBalances": "Tổng ví",
+  "income": "Thu nhập",
+  "outcome": "Chi tiêu",
+  "transactions": "Giao dịch",
+  "viewAll": "Xem tất cả",
+}

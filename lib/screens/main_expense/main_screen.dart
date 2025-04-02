@@ -1,12 +1,15 @@
 import 'dart:math';
 
+import 'package:bloc_expenses_tracker/screens/add_expense/blocs/language_bloc/language_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/theme_bloc/theme_bloc.dart';
+import 'package:bloc_expenses_tracker/screens/main_expense/widget/language_toggle.dart';
 import 'package:bloc_expenses_tracker/utils/utils.dart';
 import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainScreen extends StatelessWidget {
   final List<Expense> expenses;
@@ -52,7 +55,7 @@ class MainScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Welcome!",
+                          AppLocalizations.of(context)!.welcome,
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
@@ -86,6 +89,9 @@ class MainScreen extends StatelessWidget {
 
                         themeBloc.add(ChangeTheme(themeMode: themeMode));
                       },
+                    ),
+                    LanguageToggle(
+                      locale: context.watch<LanguageBloc>().state.locale,
                     ),
                     IconButton(
                       onPressed: () {},
@@ -122,9 +128,9 @@ class MainScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Total Balance',
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context)!.totalBalances,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -168,18 +174,18 @@ class MainScreen extends StatelessWidget {
                             const SizedBox(
                               width: 8,
                             ),
-                            const Column(
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Income',
-                                  style: TextStyle(
+                                  AppLocalizations.of(context)!.income,
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.white,
                                   ),
                                 ),
-                                Text(
+                                const Text(
                                   '\$ 2500',
                                   style: TextStyle(
                                     fontSize: 14,
@@ -210,18 +216,18 @@ class MainScreen extends StatelessWidget {
                             const SizedBox(
                               width: 8,
                             ),
-                            const Column(
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Outcome',
-                                  style: TextStyle(
+                                  AppLocalizations.of(context)!.outcome,
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.white,
                                   ),
                                 ),
-                                Text(
+                                const Text(
                                   '\$ 2500',
                                   style: TextStyle(
                                     fontSize: 14,
@@ -246,7 +252,7 @@ class MainScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Transactions',
+                  AppLocalizations.of(context)!.transactions,
                   style: TextStyle(
                     fontSize: 16,
                     color: Theme.of(context).colorScheme.onSurface,
@@ -256,7 +262,7 @@ class MainScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () {},
                   child: Text(
-                    'View All',
+                    AppLocalizations.of(context)!.viewAll,
                     style: TextStyle(
                       fontSize: 14,
                       color: Theme.of(context).colorScheme.outline,

@@ -1,8 +1,10 @@
+import 'package:bloc_expenses_tracker/screens/add_expense/blocs/language_bloc/language_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/theme_bloc/theme_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/home_expense/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyAppView extends StatelessWidget {
   const MyAppView({super.key});
@@ -30,6 +32,9 @@ class MyAppView extends StatelessWidget {
             .watch<ThemeBloc>()
             .state
             .themeMode, // Chế độ tự động theo hệ thống
+        locale: context.watch<LanguageBloc>().state.locale,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: _lightTheme(),
         darkTheme: _darkTheme(),
         home: const HomeScreenExpense(),
