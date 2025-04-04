@@ -12,37 +12,32 @@ class MyAppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: context.read<ThemeBloc>().state.themeMode == ThemeMode.dark
-          ? SystemUiOverlayStyle.light.copyWith(
-              statusBarColor: Colors.grey.shade900,
-              statusBarIconBrightness: Brightness.light,
-              systemNavigationBarColor: Colors.black,
-              systemNavigationBarIconBrightness: Brightness.light,
-            )
-          : SystemUiOverlayStyle.dark.copyWith(
-              statusBarColor: Colors.grey.shade100,
-              statusBarIconBrightness: Brightness.dark,
-              systemNavigationBarColor: Colors.white,
-              systemNavigationBarIconBrightness: Brightness.dark,
-            ),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "My Application",
-        themeMode: context
-            .watch<ThemeBloc>()
-            .state
-            .themeMode, // Chế độ tự động theo hệ thống
-        locale: context.watch<LanguageBloc>().state.locale,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: _lightTheme(),
-        darkTheme: _darkTheme(),
-        home: const HomeScreenExpense(),
-      ),
-    );
+        value: context.read<ThemeBloc>().state.themeMode == ThemeMode.dark
+            ? SystemUiOverlayStyle.light.copyWith(
+                statusBarColor: Colors.grey.shade900,
+                statusBarIconBrightness: Brightness.light,
+                systemNavigationBarColor: Colors.black,
+                systemNavigationBarIconBrightness: Brightness.light,
+              )
+            : SystemUiOverlayStyle.dark.copyWith(
+                statusBarColor: Colors.grey.shade100,
+                statusBarIconBrightness: Brightness.dark,
+                systemNavigationBarColor: Colors.white,
+                systemNavigationBarIconBrightness: Brightness.dark,
+              ),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: "My Application",
+          themeMode: context.watch<ThemeBloc>().state.themeMode,
+          locale: context.watch<LanguageBloc>().state.locale,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: _lightTheme(),
+          darkTheme: _darkTheme(),
+          home: const HomeScreenExpense(), // ✅ Điều hướng theo trạng thái login
+        ));
   }
 
-  /// Theme cho Light Mode
   ThemeData _lightTheme() {
     return ThemeData(
       brightness: Brightness.light,
@@ -68,7 +63,6 @@ class MyAppView extends StatelessWidget {
     );
   }
 
-  /// Theme cho Dark Mode
   ThemeData _darkTheme() {
     return ThemeData(
       brightness: Brightness.dark,

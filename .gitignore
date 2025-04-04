@@ -15,7 +15,21 @@ migrate_working_dir/
 android/app/.cxx/
 android/app/cxx/
 
+# lock
 pubspec.lock
+
+# Firebase
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+ 
+# CMake
+*.cmake
+linux/**/generated_*
+windows/**/generated_*
+macos/**/generated_*
+
+# Plugin registration
+lib/generated_plugin_registrant.dart
 
 
 

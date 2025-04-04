@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bloc Expense Tracker</string>
+    <string name="facebook_app_id">555081060936513</string>
+    <string name="fb_login_protocol_scheme">fb80fbd5bd63d26d7aa84f1f7a659e077f</string>
+    <string name="facebook_client_token">c67fc291f1535c1f9304a98a15655671</string>
+</resources>

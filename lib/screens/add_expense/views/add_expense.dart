@@ -107,10 +107,15 @@ class _AddExpenseState extends State<AddExpense> {
                                   size: 16,
                                   color: Colors.grey,
                                 )
-                              : Image.asset(
-                                  'assets/${expense.category.icon}.png',
-                                  scale: 2,
-                                ),
+                              : expense.category.icon == ''
+                                  ? Container(color: Colors.grey)
+                                  : Image.asset(
+                                      'assets/${expense.category.icon}.png',
+                                      scale: 2,
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              Container(color: Colors.grey),
+                                    ),
                           suffixIcon: IconButton(
                               onPressed: () async {
                                 final newCategory =
@@ -155,10 +160,12 @@ class _AddExpenseState extends State<AddExpense> {
                                         expense.category.name;
                                   });
                                 },
-                                leading: Image.asset(
-                                  'assets/${state.categories[i].icon}.png',
-                                  scale: 2,
-                                ),
+                                leading: state.categories[i].icon != ''
+                                    ? Image.asset(
+                                        'assets/${state.categories[i].icon}.png',
+                                        scale: 2,
+                                      )
+                                    : null,
                                 title: Text(
                                   state.categories[i].name,
                                   style: TextStyle(

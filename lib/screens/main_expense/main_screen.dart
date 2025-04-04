@@ -1,10 +1,14 @@
 import 'dart:math';
 
+import 'package:bloc_expenses_tracker/app_view_login.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/language_bloc/language_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/theme_bloc/theme_bloc.dart';
+import 'package:bloc_expenses_tracker/screens/login/login_bloc/login_bloc.dart';
+import 'package:bloc_expenses_tracker/screens/login/views/login_page.dart';
 import 'package:bloc_expenses_tracker/screens/main_expense/widget/language_toggle.dart';
 import 'package:bloc_expenses_tracker/utils/utils.dart';
 import 'package:expense_repository/expense_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -94,7 +98,18 @@ class MainScreen extends StatelessWidget {
                       locale: context.watch<LanguageBloc>().state.locale,
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        FirebaseAuth.instance.signOut().then((data) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => BlocProvider(
+                                      create: (context) => LoginBloc(),
+                                      child: const MyAppViewLogin(),
+                                    )),
+                          );
+                        });
+                      },
                       icon: const Icon(CupertinoIcons.settings),
                       color: Theme.of(context).colorScheme.onSurface,
                     ),

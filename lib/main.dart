@@ -1,9 +1,9 @@
 import 'package:bloc_expenses_tracker/app_view.dart';
-import 'package:bloc_expenses_tracker/screens/add_expense/blocs/language_bloc/language_bloc.dart';
-import 'package:bloc_expenses_tracker/screens/add_expense/blocs/theme_bloc/theme_bloc.dart';
-import 'package:bloc_expenses_tracker/screens/home_expense/get_expenses_blocs/bloc/get_expenses_bloc.dart';
+import 'package:bloc_expenses_tracker/app_view_login.dart';
+import 'package:bloc_expenses_tracker/screens/base/app_wrapper.dart';
+import 'package:bloc_expenses_tracker/screens/login/login_bloc/login_bloc.dart';
 import 'package:bloc_expenses_tracker/simple_bloc_observer.dart';
-import 'package:expense_repository/expense_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,21 +13,24 @@ void main() async {
   await Firebase.initializeApp();
   Bloc.observer = SimpleBlocObserver();
 
+  // ✅ Kiểm tra user đã login chưa
+  final user = FirebaseAuth.instance.currentUser;
+
+  const String green = '\x1B[32m';
+  const String reset = '\x1B[0m';
+
+  print('$green user $user $reset');
+
+  final bool isLoggedIn = user != null;
+
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ThemeBloc()..add(const LoadTheme()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              GetExpensesBloc(FirebaseExpenseRepo())..add(GetExpenses()),
-        ),
-        BlocProvider(
-          create: (context) => LanguageBloc()..add(const LoadLanguage()),
-        ),
-      ],
-      child: const MyAppView(),
-    ),
+    isLoggedIn
+        ? const AppWrapper(
+            child: MyAppView(),
+          )
+        : BlocProvider(
+            create: (context) => LoginBloc(),
+            child: const MyAppViewLogin(),
+          ),
   );
 }
