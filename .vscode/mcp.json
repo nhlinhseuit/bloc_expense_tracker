@@ -1,0 +1,12 @@
+{
+  "servers": {
+"filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "D:/DEV/Flutter-Folder/bloc_expenses_tracker",
+      ]
+    }
+  }
+}
