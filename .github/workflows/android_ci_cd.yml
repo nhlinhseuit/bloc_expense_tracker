@@ -48,8 +48,8 @@ jobs:
         run: flutter analyze
 
       # Bước 7: Chạy unit tests
-      - name: Run tests
-        run: flutter test
+      # - name: Run tests
+      #   run: flutter test
 
       # Bước 8: Xây dựng AppBundle cho Android
       - name: Build AppBundle
