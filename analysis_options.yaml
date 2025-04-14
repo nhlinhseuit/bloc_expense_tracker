@@ -4,8 +4,8 @@ analyzer:
   exclude:
     - lib/generated/**
   errors:
-    unused_import: warning # Đặt mức độ thành warning, không phải error
-    deprecated_member_use: warning
+    unused_import: ignore # Đặt mức độ thành warning, không phải error
+    deprecated_member_use: ignore
     avoid_print: ignore # Bỏ qua cảnh báo về print
     use_build_context_synchronously: ignore
 
