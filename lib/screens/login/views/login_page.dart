@@ -4,6 +4,7 @@ import 'package:bloc_expenses_tracker/app_view.dart';
 import 'package:bloc_expenses_tracker/screens/base/app_wrapper.dart';
 import 'package:bloc_expenses_tracker/screens/login/login_bloc/login_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/login/views/login_only_email_page.dart';
+import 'package:bloc_expenses_tracker/screens/login/views/login_with_phone.dart';
 import 'package:bloc_expenses_tracker/screens/signup/signup_bloc/signup_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/signup/views/signup_page.dart';
 import 'package:bloc_expenses_tracker/utils/app_utils.dart';
@@ -374,7 +375,10 @@ class _LoginPageState extends State<LoginPage> {
         context.read<LoginBloc>().add(LoginWithGoogle());
         break;
       case LoginMethod.phone:
-        // handle phone login
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginPageWithPhone()),
+        );
         break;
       case LoginMethod.emailPassword:
         break;

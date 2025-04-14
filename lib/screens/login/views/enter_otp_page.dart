@@ -5,35 +5,23 @@ import 'package:bloc_expenses_tracker/utils/app_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginPageOnlyEmail extends StatefulWidget {
-  const LoginPageOnlyEmail({super.key});
+class EnterOTPPage extends StatefulWidget {
+  const EnterOTPPage({super.key});
 
   @override
-  State<LoginPageOnlyEmail> createState() => _LoginPageOnlyEmailState();
+  State<EnterOTPPage> createState() => _EnterOTPPageState();
 }
 
-class _LoginPageOnlyEmailState extends State<LoginPageOnlyEmail> {
-  final _emailController = TextEditingController();
+class _EnterOTPPageState extends State<EnterOTPPage> {
+  final _phoneNumController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginEmailLinkSent) {
-          AppUtils.showSnackbar(context,
-              'Gửi link verify tới email ${_emailController.text} thành công!');
         } else if (state is LoginSuccess) {
-          // Navigator.pushReplacement(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => const AppWrapper(child: MyAppView()),
-          //   ),
-          // );
-
-          AppUtils.showSnackbar(context, 'Đăng nhập thành công!');
-        } else if (state is LoginFailure) {
-          AppUtils.showSnackbar(context, state.error);
-        }
+        } else if (state is LoginFailure) {}
       },
       child: Scaffold(
         backgroundColor: Colors.white, // Nền trắng
@@ -71,7 +59,7 @@ class _LoginPageOnlyEmailState extends State<LoginPageOnlyEmail> {
 
                 // Title
                 const Text(
-                  "Enter email and verify to login!",
+                  "Enter OTP!",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
@@ -82,12 +70,12 @@ class _LoginPageOnlyEmailState extends State<LoginPageOnlyEmail> {
 
                 // Email field
                 TextField(
-                  controller: _emailController,
+                  controller: _phoneNumController,
                   style: const TextStyle(
                     color: Colors.black,
                   ),
                   decoration: InputDecoration(
-                    hintText: "Enter your email",
+                    hintText: "Enter your OTP",
                     hintStyle: TextStyle(
                       fontSize: 14,
                       color: Colors.grey.shade500,
@@ -123,15 +111,15 @@ class _LoginPageOnlyEmailState extends State<LoginPageOnlyEmail> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      final email = _emailController.text.trim();
+                      final phone = _phoneNumController.text.trim();
 
-                      if (email.isEmpty) {
+                      if (phone.isEmpty) {
                         AppUtils.showSnackbar(
                             context, 'Vui lòng nhập đầy đủ thông tin');
                         return;
                       }
 
-                      context.read<LoginBloc>().add(LoginWithOnlyEmail(email));
+                      context.read<LoginBloc>().add(LoginWithPhone(phone));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
@@ -145,20 +133,6 @@ class _LoginPageOnlyEmailState extends State<LoginPageOnlyEmail> {
                       style: TextStyle(
                         color: Colors.white,
                       ),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 16),
-
-                const Center(
-                  child: Text(
-                    "Dynamic links of Firebase is deprecated!",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      fontStyle: FontStyle.italic,
-                      color: Colors.black,
                     ),
                   ),
                 ),
