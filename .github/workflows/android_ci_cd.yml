@@ -2,9 +2,9 @@ name: Flutter CI/CD # Tên workflow
 
 on: # Sự kiện kích hoạt workflow
   push:
-    branches: [ "main" ] # Chạy khi đẩy mã lên nhánh main
+    branches: ["main"] # Chạy khi đẩy mã lên nhánh main
   pull_request:
-    branches: [ "main" ] # Chạy khi tạo pull request vào main
+    branches: ["main"] # Chạy khi tạo pull request vào main
   workflow_dispatch: # Cho phép chạy thủ công từ GitHub
 
 jobs:
@@ -21,19 +21,23 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
-          java-version: '17'
+          distribution: "zulu"
+          java-version: "17"
 
       # Bước 3: Cài đặt Flutter
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.3' # Phiên bản Flutter cụ thể
-          channel: 'stable'
+          flutter-version: "3.24.3" # Phiên bản Flutter cụ thể
+          channel: "stable"
 
       # Bước 4: Lấy các thư viện
       - name: Get dependencies
         run: flutter pub get
+
+      # Bước 4.2: Khởi tạo AppLocalization
+      - name: Generate AppLocalization
+        run: flutter gen-l10n
 
       # Bước 5: Kiểm tra định dạng mã
       # - name: Check formatting
