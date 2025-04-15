@@ -21,12 +21,18 @@ pubspec.lock
 # Firebase
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
+
+# Ignore generated files by Flutter
+generated_plugin_registrant.cc
+generated_plugin_registrant.swift
+generated_plugins.cmake
  
 # CMake
 *.cmake
 linux/**/generated_*
 windows/**/generated_*
 macos/**/generated_*
+
 
 # Plugin registration
 lib/generated_plugin_registrant.dart

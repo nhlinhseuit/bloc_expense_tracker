@@ -1,3 +1,4 @@
+import 'package:bloc_expenses_tracker/notification_service.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/language_bloc/language_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/add_expense/blocs/theme_bloc/theme_bloc.dart';
 import 'package:bloc_expenses_tracker/screens/home_expense/views/home_screen.dart';
@@ -26,6 +27,7 @@ class MyAppView extends StatelessWidget {
                 systemNavigationBarIconBrightness: Brightness.dark,
               ),
         child: MaterialApp(
+          navigatorKey: navigatorKey, // Gán navigatorKey
           debugShowCheckedModeBanner: false,
           title: "My Application",
           themeMode: context.watch<ThemeBloc>().state.themeMode,
