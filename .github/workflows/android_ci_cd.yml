@@ -8,6 +8,7 @@ on: # Sự kiện kích hoạt workflow
   workflow_dispatch: # Cho phép chạy thủ công từ GitHub
 
 jobs:
+  # JOB CI và CD cơ bản: Analyze code, test và build file .aab và upload lên artifact 
   build:
     name: Build and Test
     runs-on: ubuntu-latest # Máy ảo Linux
@@ -61,3 +62,36 @@ jobs:
         with:
           name: appbundle
           path: build/app/outputs/bundle/release/app-release.aab
+
+      # Bước 10: Thêm bước để đẩy lên Firebase App Distribution (bằng file apk -> thay câu lệnh thành flutter build apk)
+      # - name: Distribute to Firebase App Distribution
+      #   uses: wzieba/Firebase-Distribution-Github-Action@v1
+      #   with:
+      #     appId: ${{ secrets.FIREBASE_APP_ID }}
+      #     token: ${{ secrets.FIREBASE_TOKEN }}
+      #     file: build/app/outputs/bundle/release/app-release.aab
+      #     groups: testers
+      #     releaseNotes: "New build with bug fixes and improvements"
+
+# Bước 10: Thêm bước để đẩy lên Google Play
+# deploy:
+#     name: Deploy to Google Play
+#     needs: build
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
+
+#       - name: Download App Bundle
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: appbundle
+
+#       - name: Upload to Google Play
+#         uses: r0adkll/upload-google-play@v1
+#         with:
+#           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+#           packageName: com.example.myapp # Thay bằng package name của ứng dụng
+#           releaseFiles: app-release.aab
+#           track: internal # Có thể thay bằng alpha, beta, hoặc production
+#           status: draft # Có thể thay bằng completed, halted, hoặc inProgress
