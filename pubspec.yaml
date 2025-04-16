@@ -19,6 +19,10 @@ dependencies:
   intl: ^0.19.0
   flutter_colorpicker: ^1.1.0
 
+  # animation
+  rive: ^0.13.1
+  lottie: ^3.2.0
+
   expense_repository:
     path: packages/expense_repository
   bloc: ^9.0.0
@@ -46,3 +50,5 @@ flutter:
   generate: true
   assets:
     - assets/
+    - assets/lottie/
+    - assets/RiveAssets/
