@@ -38,6 +38,8 @@ dependencies:
   firebase_auth: ^5.5.2
   flutter_local_notifications: ^19.1.0
   firebase_messaging: ^15.2.5
+  flutter_animate: ^4.5.2
+  flutter_custom_carousel: ^0.1.0+1
 
 dev_dependencies:
   flutter_test:

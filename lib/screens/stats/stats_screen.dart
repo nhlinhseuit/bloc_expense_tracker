@@ -1,7 +1,10 @@
 import 'package:bloc_expenses_tracker/screens/stats/chart.dart';
+import 'package:bloc_expenses_tracker/screens/stats/widgets/download_button.dart';
 import 'package:bloc_expenses_tracker/screens/stats/widgets/flip_card.dart';
 import 'package:bloc_expenses_tracker/screens/stats/widgets/wave_animation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_custom_carousel/flutter_custom_carousel.dart';
 import 'package:lottie/lottie.dart';
 
 class StatsScreen extends StatefulWidget {
@@ -12,6 +15,8 @@ class StatsScreen extends StatefulWidget {
 }
 
 class _StatsScreenState extends State<StatsScreen> {
+  final bool _over = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,6 +27,36 @@ class _StatsScreenState extends State<StatsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Text("Hello World!").animate().fade().scale(),
+
+              DownloadButton(onPressed: () {})
+                  .animate(onPlay: (controller) => controller.repeat())
+                  .shimmer(delay: 4000.ms, duration: 1800.ms) // shimmer +
+                  .shake(hz: 4, curve: Curves.easeInOutCubic) // shake +
+                  .scale(
+                      begin: const Offset(1, 1),
+                      end: const Offset(1.1, 1.1),
+                      duration: 600.ms) // scale up
+                  .then(delay: 600.ms) // then wait and
+                  .scale(
+                    begin: const Offset(1, 1),
+                    end: const Offset(1 / 1.1, 1 / 1.1),
+                  ),
+
+              // very basic example that scrolls children vertically from -250px to +250px
+              SizedBox(
+                height: 400,
+                child: CustomCarousel(
+                  effectsBuilder: CustomCarousel.effectsBuilderFromAnimate(
+                    effects: EffectList().moveY(begin: -250, end: 250),
+                  ),
+                  children: [
+                    DownloadButton(isYellowButton: true, onPressed: () {}),
+                    DownloadButton(onPressed: () {}),
+                  ],
+                ),
+              ),
+
               const FlipCard(),
 
               ClipRRect(
