@@ -1,11 +1,17 @@
 import 'package:bloc_expenses_tracker/screens/stats/chart.dart';
+import 'package:bloc_expenses_tracker/screens/stats/widgets/flip_card.dart';
 import 'package:bloc_expenses_tracker/screens/stats/widgets/wave_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class StatsScreen extends StatelessWidget {
+class StatsScreen extends StatefulWidget {
   const StatsScreen({super.key});
 
+  @override
+  State<StatsScreen> createState() => _StatsScreenState();
+}
+
+class _StatsScreenState extends State<StatsScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -16,6 +22,8 @@ class StatsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const FlipCard(),
+
               ClipRRect(
                 borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(25),
